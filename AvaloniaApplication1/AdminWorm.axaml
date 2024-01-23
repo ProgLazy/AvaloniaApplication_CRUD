@@ -1,0 +1,177 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:scriptC="clr-namespace:AvaloniaApplication1.Script_C_"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApplication1.AdminWorm"
+        Title="AdminWorm"
+        x:DataType="scriptC:Scripts">
+     <StackPanel Margin="30">
+         <Button Click="Button_OnClick">Back</Button>
+         <TextBlock>Выбирете вкладку с таблицей</TextBlock>
+         <TabControl>
+          
+           <TabItem Header="Метео_Климат">
+               <StackPanel Name="StranicaMain">
+                   <StackPanel Name="GridPanel" Height="250" >
+                       <DataGrid  x:Name="Grid1"
+                                  Height="240"
+                                  IsReadOnly="True"
+                                  GridLinesVisibility="All"
+                                  BorderThickness="20"
+                                  BorderBrush="Gainsboro"
+                                  Margin="10,1"
+                                  x:DataType="scriptC:Scripts">
+                               <DataGrid.Columns>
+                              <DataGridTextColumn Header="ID" Binding="{Binding id}"></DataGridTextColumn>
+                              <DataGridTextColumn Header="Станция" Binding="{Binding stancia}"></DataGridTextColumn>
+                              <DataGridTextColumn Header="Время" Binding="{Binding data_vre}"></DataGridTextColumn>
+                              <DataGridTextColumn Header="Температура" Binding="{Binding temperature}"></DataGridTextColumn>
+                              <DataGridTextColumn Header="Влажность воздуха" Binding="{Binding vlash_H2}"></DataGridTextColumn>
+                              <DataGridTextColumn Header="Скорость ветра" Binding="{Binding sp_vetra}"></DataGridTextColumn>
+                              <DataGridTextColumn Header="Направление" Binding="{Binding napravlenie}"></DataGridTextColumn>
+                              <DataGridTextColumn Header="Атмосферное давление" Binding="{Binding atmos_dav}"></DataGridTextColumn>
+                              <DataGridTextColumn Header="Облачность" Binding="{Binding oblach}"></DataGridTextColumn>
+                              <DataGridTextColumn Header="Наличие осадков" Binding="{Binding nalichie_osad}"></DataGridTextColumn>
+                               </DataGrid.Columns>
+                           </DataGrid>
+                   </StackPanel>
+                   <StackPanel Name="PanelMain" Orientation="Vertical" Margin="10 10 10 10" Background="Gainsboro">
+                       <StackPanel Name="SearchPanel" Orientation="Horizontal">
+                       <TextBlock>Введите для поиска</TextBlock>
+                       <TextBox Name="Search" TextChanged="Search_OnTextChanged" Height="10" Width="200"></TextBox>
+                           <ComboBox Name="Box" x:CompileBindings="False" Width="200" Height="10" SelectionChanged="Box_OnSelectionChanged">
+                               <ComboBox.ItemTemplate>
+                                   <DataTemplate>
+                                       <TextBlock Text="{Binding napravl}"/>
+                                   </DataTemplate>
+                               </ComboBox.ItemTemplate>
+                           </ComboBox>
+                       </StackPanel>
+                           <StackPanel Name="TextBoxPanel" Background="Gainsboro" Orientation="Horizontal">
+                               <TextBox Name="ID_TextBox" Width="100" Height="10" Margin="1"/>
+                               <TextBox Name="t1" Width="100" Height="10" Margin="1"/>
+                               <TextBox Name="t2" Width="100" Height="10" TextWrapping="Wrap" Margin="1"/>
+                               <TextBox Name="t3" Height="10" Width="100" Margin="1"></TextBox>
+                               <TextBox Name="t4" Height="10" Width="100" Margin="1"></TextBox>
+                               <TextBox Name="t5" Height="10" Width="100" Margin="1"></TextBox>
+                               <TextBox Name="t6" Height="10" Width="100" Margin="1"></TextBox>
+                               <TextBox Name="t7" Height="10" Width="100" Margin="1"></TextBox>
+                               <TextBox Name="t8" Height="10" Width="100" Margin="1"></TextBox>
+                               <TextBox Name="t9" Height="10" Width="100" Margin="1"></TextBox>
+                           </StackPanel>
+                       <StackPanel Name="ButtonPanel" Background="Gainsboro" Orientation="Horizontal">
+                           
+                           <Button Height="30" Width="50" Background="LightGreen" Content="Add" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="AddOnClick"/>
+                           <Button Height="30" Width="50" Background="LightGreen" Content="Save" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="SaveOnClick"/>
+                           <Button Height="30" Width="60" Background="LightGreen" Content="Delete" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="DeleteOnClick"/>
+                           <Button Height="30" Width="70" Background="LightGreen" Content="Update" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="UpdateOnClick"/>
+                           <Button Height="30" Width="60" Background="LightGreen" Content="Excel" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="ExcelOnClick"/>
+                           <Button Height="30" Width="60" Background="LightGreen" Content="Filter" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="Button_Filter"/>
+                       </StackPanel>
+                   </StackPanel>
+               </StackPanel>
+           </TabItem>
+           <TabItem Header="Свойства_Веществ">
+               <DataGrid  x:Name="Grid2" 
+                          IsReadOnly="True"
+                          GridLinesVisibility="All"
+                          BorderThickness="20"
+                          BorderBrush="Gainsboro"
+                          Margin="10,1"
+                          x:DataType="scriptC:Svoystva_vesh">
+                   <DataGrid.Columns>
+                       <DataGridTextColumn Header="ID" Binding="{Binding id1}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Загрязняющее вещество" Binding="{Binding zagryz_ve}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Средне-суточное" Binding="{Binding average_sutoch}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="ПДК" Binding="{Binding pdk_m}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="ПДК в рабочей зоне" Binding="{Binding pdk_rab}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="ПДК_почвы" Binding="{Binding pdk_poch}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Класс опасности" Binding="{Binding cl_opasnos}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Плотность" Binding="{Binding plots}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Температура" Binding="{Binding temperature}"></DataGridTextColumn>
+                   </DataGrid.Columns>
+               </DataGrid>
+           </TabItem>
+          
+           <TabItem Header="Мониторинг">
+               <DataGrid  x:Name="Grid3" 
+                          IsReadOnly="True"
+                          GridLinesVisibility="All"
+                          BorderThickness="20"
+                          BorderBrush="Gainsboro"
+                          Margin="10,1"
+                          x:DataType="scriptC:monitor">
+                   <DataGrid.Columns>
+                       <DataGridTextColumn Header="ID" Binding="{Binding id2}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Станции" Binding="{Binding stanc}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Процент Загрязнения" Binding="{Binding gryaz}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Дата пробы" Binding="{Binding data_pr}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Значение концентрации" Binding="{Binding value_con}"></DataGridTextColumn>
+                   </DataGrid.Columns>
+               </DataGrid>
+           </TabItem>
+           
+           <TabItem Header="Источник_Выбросов">
+               <DataGrid  x:Name="Grid5" 
+                          IsReadOnly="True"
+                          GridLinesVisibility="All"
+                          BorderThickness="20"
+                          BorderBrush="Gainsboro"
+                          Margin="10,1"
+                          x:DataType="scriptC:stream_vbr">
+                   <DataGrid.Columns>
+                       <DataGridTextColumn Header="ID" Binding="{Binding id3}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Наименование_Выброса" Binding="{Binding name_st}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Тип_Выброса" Binding="{Binding type_st}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Загрязнение" Binding="{Binding zagryaz_d}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Установка" Binding="{Binding ustanov}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Технологический процесс" Binding="{Binding techno_proc}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Валовая мощность выброса" Binding="{Binding valov_mos}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Температура выброса" Binding="{Binding temp_v}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Скорость выброса" Binding="{Binding sp_v}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Объемный расход" Binding="{Binding ob_ras}"></DataGridTextColumn>
+                       <DataGridTextColumn Header="Доля загрязняющего вещества" Binding="{Binding dolya_ves}"></DataGridTextColumn>
+                   </DataGrid.Columns>
+               </DataGrid>
+           </TabItem>
+             
+             <TabItem Header="Генерация записей">
+                 <StackPanel>
+                     <DataGrid  x:Name="Grid6" 
+                                Height="240"
+                                IsReadOnly="True"
+                                GridLinesVisibility="All"
+                                BorderThickness="20"
+                                BorderBrush="Gainsboro"
+                                Margin="10,1"
+                                x:DataType="scriptC:seeding">
+                         <DataGrid.Columns>
+                             <DataGridTextColumn Header="ID" Binding="{Binding id9}"></DataGridTextColumn>
+                             <DataGridTextColumn Header="Login" Binding="{Binding log}"></DataGridTextColumn>
+                             <DataGridTextColumn Header="Password" Binding="{Binding pass}"></DataGridTextColumn>
+                         </DataGrid.Columns>
+                     </DataGrid>
+                     <StackPanel Name="ButtonPanel1" Background="Gainsboro" Orientation="Horizontal">
+                           
+                         <Button Height="30" Width="70" Background="LightGreen" Content="Generate" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="Generate_OnClick"/>
+                         <Button Height="30" Width="70" Background="LightGreen" Content="Clean" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="Clean_OnClick"/>
+                         <Button Height="30" Width="70" Background="LightGreen" Content="Update" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="Update_OnClick"/>
+                         <Button Height="30" Width="100" Background="LightGreen" Content="Create_Xml" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="Xml_OnClick"/>
+                         <Button Height="30" Width="100" Background="LightGreen" Content="Open_Xml" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 5 0 0" Click="Xml_Open_OnClick"/>
+                         <TextBox Name="text4" Height="10" Width="500"></TextBox>
+                         
+                     </StackPanel>
+                 </StackPanel>
+             </TabItem>
+             <TabItem Header="Создание 10000 пользователей">
+                 <StackPanel>
+                 <TextBox Name="text1" Width="900" Height="300" Margin="1"/>
+                 <Button Height="30" Width="60" Content="Create" Click="CreateClick"></Button>
+                 </StackPanel>
+             </TabItem>
+           
+       </TabControl>
+    </StackPanel>
+</Window>

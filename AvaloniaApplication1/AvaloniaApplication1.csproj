@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.0.5" />
+        <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.5" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.5" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.5" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
+        <PackageReference Include="ClosedXML" Version="0.104.0-preview2" />
+        <PackageReference Include="ExcelDataReader" Version="3.7.0-develop00385" />
+        <PackageReference Include="ExcelDataReader.DataSet" Version="3.7.0-develop00385" />
+        <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
+        <PackageReference Include="MySql.Data" Version="8.2.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
+        <PackageReference Include="XlsxHelper" Version="2.1.0" />
+    </ItemGroup>
+</Project>
